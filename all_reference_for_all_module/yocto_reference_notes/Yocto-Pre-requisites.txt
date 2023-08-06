@@ -1,0 +1,44 @@
+Yocto Workshop:
+***************
+
+1. Ubuntu 14.04 LTS or 16.04 LTS (No VMware )
+
+Dependies install for ubuntu 14/16.04:
+**************************************
+ubuntu@PC:~/work/scripts$ vim  elinux_pkg.sh 
+
+sudo apt-get update
+sudo apt-get -y install git-core flex bison gperf libesd0-dev zip libwxgtk2.6-dev zlib1g-dev build-essential gettext texinfo
+sudo apt-get -y install  fakeroot gnupg libsdl1.2-dev squashfs-tools uboot-mkimage expect libncurses5-dev
+sudo apt-get -y install minicom lrzsz tftpd-hpa nfs-kernel-server nfs-common portmap patch vim gawk
+sudo apt-get -y install xinetd tftpd tftp qtcreator ctags quilt 
+sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm
+echo ; echo "your setup is completed ";echo; echo "all the best";
+
+save and exit
+
+ubuntu@PC:~/work/scripts$ chmod 777 elinux_pkg.sh && ./elinux_pkg.sh
+
+
+Yocto setup:  (Imxul-RuggedBoard)
+************
+
+mkdir yocto
+
+cd yocto
+
+yocto$ wget ftp://ftp.phytec.de/pub/Software/Linux/BSP-Yocto-AM335x/BSP-Yocto-AM335x-PD15.3.2/BSP-Yocto-AM335x-PD15.3.2.tar.xz
+
+yocto$ tar -xvf BSP-Yocto-AM335x-PD15.3.2.tar.xz 
+
+yocto$ cd BSP-Yocto-AM335x-PD15.3.2/
+
+yocto/BSP-Yocto-AM335x-PD15.3.2/$ source sources/poky/oe-init-build-env
+
+yocto/BSP-Yocto-AM335x-PD15.3.2/build/$ vi conf/local.conf
+
+	Replace MACHINE ?= "beagleboneblack-1"  to  MACHINE ?= "phyboard-picoboard"
+	save and exit
+
+yocto/BSP-Yocto-AM335x-PD15.3.2/build/$ bitbake core-image-minimal
+
